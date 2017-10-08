@@ -1,11 +1,13 @@
 package com.rohit.ctci3;
 
-public class Stack {
+public class StackWithMin {
 	private static class Node{
 		private int data;
+		private int min;
 		private Node next;
-		private Node(int data) {
+		private Node(int data, int min) {
 			this.data = data;
+			this.min = min;
 			this.next=null;
 		}
 	}
@@ -24,10 +26,22 @@ public class Stack {
 		return top.data;
 	}
 	
-	public void push(int data) {		
-		Node node = new Node(data);
+	public void push(int data) {
+		int min = data;
+		if(top != null) {
+			if(data < top.min) {
+				min = data;
+			}else {
+				min = top.min;
+			}
+		}
+		Node node = new Node(data, min);
 		node.next = top;
 		top = node;
+	}
+	
+	public int min() {
+		return top.min;
 	}
 	
 	public int pop() {
@@ -43,7 +57,7 @@ public class Stack {
 		Node temp = top;
 		System.out.println("Printing stack");
 		while(temp != null) {
-			System.out.println(temp.data);
+			System.out.println(temp.data+ ", " +temp.min);
 			temp = temp.next;			
 		}
 	}

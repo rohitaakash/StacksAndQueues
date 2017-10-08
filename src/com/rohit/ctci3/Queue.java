@@ -49,4 +49,18 @@ public class Queue {
 		}
 		return data;
 	}
+	
+	public void printQueue() {
+		Node temp = head;
+		System.out.println("Printing queue");
+		while(temp!=null) {
+			System.out.print(temp.data);
+			temp = temp.next;
+			if(temp != null) {
+				System.out.print("->");
+			}
+		}
+		System.out.println();
+		
+	}
 }
